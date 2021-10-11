@@ -1,6 +1,8 @@
 package modelo;
 
-public class Pessoa {
+import java.util.ArrayList;
+
+public abstract class Pessoa {
 	protected int id;
 	protected String nome;
 	protected String endereco;
@@ -9,8 +11,12 @@ public class Pessoa {
 	protected float renda;
 	protected byte situacao;
 	
+	protected ArrayList<ContaComum> contas; 
+	
 	public Pessoa() {
 		this.situacao = 1;
+		
+		this.contas = new ArrayList<ContaComum>();
 	}
 	
 	public int getId() {
@@ -67,6 +73,14 @@ public class Pessoa {
 
 	public void setSituacao(byte situacao) {
 		this.situacao = situacao;
+	}
+
+	public ArrayList<ContaComum> getContas() {
+		return contas;
+	}
+
+	public void setContas(ArrayList<ContaComum> contas) {
+		this.contas = contas;
 	}
 	
 	

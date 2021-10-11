@@ -4,8 +4,9 @@ import java.sql.*;
 import java.util.*;
 import modelo.Pessoa;
 
-public class PessoaDAO extends FabricaConexao{
-	public int criarPessoa(Pessoa pessoa) {
+public abstract class PessoaDAO extends FabricaConexao{
+	
+	protected int criarPessoa(Pessoa pessoa) {
 		int id = 0;
 		
 		try {
@@ -34,43 +35,32 @@ public class PessoaDAO extends FabricaConexao{
 		return id;
 	}
 	
-	public ArrayList<Pessoa> recuperarPessoas() {
-		ArrayList<Pessoa> resultado = null;
-		
-		try {
+	public void recuperarPessoaPorId(int id, Pessoa resultado) {
+		try 
+		{
 			String stmt = "select id, nome, endereco, cep, telefone, renda, situacao "
-					+ "from pessoas order by nome";
+					+ "from pessoas where id = ?";
 			
 			PreparedStatement pStmt = super.conn.prepareStatement(stmt);
 			
+			pStmt.setInt(1, id);
+			
 			ResultSet rs = pStmt.executeQuery();
 			
-			resultado = new ArrayList<Pessoa>();
-			
-			while(rs.next()) 
+			if(rs.next()) 
 			{
-				Pessoa p = new Pessoa();
-				
-				p.setId(rs.getInt("id"));
-				p.setNome(rs.getString("nome"));
-				p.setEndereco(rs.getString("endereco"));
-				p.setCep(rs.getLong("cep"));
-				p.setTelefone(rs.getString("telefone"));
-				p.setRenda(rs.getFloat("renda"));
-				p.setSituacao(rs.getByte("situacao"));
-				
-				resultado.add(p);
+				resultado.setId(rs.getInt("id"));
+				resultado.setNome(rs.getString("nome"));
+				resultado.setEndereco(rs.getString("endereco"));
+				resultado.setCep(rs.getLong("cep"));
+				resultado.setTelefone(rs.getString("telefone"));
+				resultado.setRenda(rs.getFloat("renda"));
+				resultado.setSituacao(rs.getByte("situacao"));
 			}
-			
 		}
-		catch (Exception e){
-			System.out.println("Erro ao tentar recuperar as pessoas cadastradas! " 
-		+ e.getMessage());
+		catch (Exception e) 
+		{
+			System.out.println("Erro ao tentar recuperar a pessoa com ID " + id + ". " + e.getMessage());
 		}
-		
-		return resultado;
 	}
-
-				
-	
 }

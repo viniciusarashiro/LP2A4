@@ -1,4 +1,5 @@
 import modelo.Pessoa;
+import modelo.PessoaFisica;
 import modelo.repositorio.*;
 import java.util.*;
 
@@ -6,35 +7,23 @@ public class Main {
 
 	public static void main(String[] args)
 	{
-		/* Exemplo de Execução 1 */
-		/*
-		Pessoa p1 = new Pessoa();
+		PessoaFisica p1 = new PessoaFisica();
 		
-		p1.setNome("Maria dos Santos");
-		p1.setEndereco("Rua Nove de Julho, 500, Sao Paulo - SP");
-		p1.setCep(70605222l);
-		p1.setTelefone("(88) 8888-8888");
-		p1.setRenda(5000.75f);
+		p1.setNome("Joao Pereira");
+		p1.setEndereco("Rua Abc Def, 250, Sao Paulo - SP");
+		p1.setCep(77705333);
+		p1.setTelefone("(77) 7777-7777");
+		p1.setRenda(4800.5f);
+		p1.setCpf(11111111111l);
+		p1.setNascto(new Date(1990 - 1900, 3, 25));
 		
-		PessoaDAO pDAO = new PessoaDAO(); //Faz abertura da conexão
+		PessoaFisicaDAO pfDAO = new PessoaFisicaDAO();
 		
-		int idP1 = pDAO.criarPessoa(p1); //Executa a operação no BD
+		int idP1 = pfDAO.criarPessoaFisica(p1);
 		
-		p1.setId(idP1);
+		System.out.println("ID da pessoa física inserida: " + p1.getId());
 		
-		System.out.println("ID da pessoa inserida: " + p1.getId());
-		
-		pDAO.fecharConexao(); //Fecha a conexão
-		*/
-		
-		/* Exemplo de Execução 2 */
-		PessoaDAO pDAO = new PessoaDAO();
-		
-		ArrayList<Pessoa> pessoas = pDAO.recuperarPessoas();
-		
-		pessoas.forEach(p -> System.out.println("Nome: " + p.getNome()));
-		
-		pDAO.fecharConexao();
+		pfDAO.fecharConexao();
 	}
 
 }
