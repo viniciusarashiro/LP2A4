@@ -3,12 +3,14 @@ package modelo;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Random;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "constascomuns")
+@Table(name = "contascomuns")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class ContaComum implements Serializable
 {
 	private static final long serialVersionUID = 1l;
@@ -32,7 +34,10 @@ public class ContaComum implements Serializable
 	
 	protected double saldo;
 	
-	protected ArrayList<Pessoa> titulares;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	protected Collection<Movimento> movimentos;
+	
+	//protected Collection<Pessoa> titulares;
 	
 	public ContaComum(long numero, Date abertura) {
 		this.numero = numero;
@@ -41,7 +46,8 @@ public class ContaComum implements Serializable
 		this.saldo = 0.0;
 		this.situacao = 1;
 		
-		this.titulares = new ArrayList<Pessoa>();
+		this.movimentos = new ArrayList<Movimento>();
+		//this.titulares = new ArrayList<Pessoa>();
 	}
 	
 	public Date getFechamento() {
@@ -74,14 +80,18 @@ public class ContaComum implements Serializable
 	public Date getAbertura() {
 		return abertura;
 	}
+	
+	public Collection<Movimento> getMovimentos() {
+		return this.movimentos;
+	}
 
-	public ArrayList<Pessoa> getTitulares() {
+	/* public Collection<Pessoa> getTitulares() {
 		return titulares;
 	}
 
 	public void setTitulares(ArrayList<Pessoa> titulares) {
 		this.titulares = titulares;
-	}
+	} */
 	
 	public static ContaComum abrirConta() {
 		
@@ -101,6 +111,14 @@ public class ContaComum implements Serializable
 		ContaComum cc = new ContaComum(n , abertura);
 		
 		return cc;
+		
+	}
+	
+	
+	public void Registra(Movimento movimento) 
+	{
+		this.movimentos.add(movimento);
+		this.saldo += movimento.getValor();
 		
 	}
 	

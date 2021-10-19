@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 
@@ -32,7 +34,7 @@ public abstract class Pessoa implements Serializable
 	protected byte situacao;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-	protected ArrayList<ContaComum> contas; 
+	protected Collection<ContaComum> contas; 
 	
 	public Pessoa() {
 		this.situacao = 1;
@@ -96,7 +98,7 @@ public abstract class Pessoa implements Serializable
 		this.situacao = situacao;
 	}
 
-	public ArrayList<ContaComum> getContas() {
+	public Collection<ContaComum> getContas() {
 		return contas;
 	}
 
