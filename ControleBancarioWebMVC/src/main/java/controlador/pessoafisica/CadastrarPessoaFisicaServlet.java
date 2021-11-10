@@ -23,7 +23,11 @@ public class CadastrarPessoaFisicaServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/pessoafisica/cadastrar.jsp");
+		request.setAttribute("tituloPagina", "Cadastrar nova Pessoa Física");
+		
+		request.setAttribute("pathView", "/WEB-INF/views/pessoafisica/cadastrar.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 		
 		rd.forward(request, response);
 	}

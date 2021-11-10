@@ -20,7 +20,11 @@ public class IndexServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
+		request.setAttribute("tituloPagina", "Sistema de Controle Bancário Web - Página inicial");
+		
+		request.setAttribute("pathView", "/WEB-INF/index.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 		rd.forward(request, response);
 	}
 

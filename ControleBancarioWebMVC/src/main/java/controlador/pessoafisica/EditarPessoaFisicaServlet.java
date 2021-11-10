@@ -47,7 +47,11 @@ public class EditarPessoaFisicaServlet extends HttpServlet {
 		
 		request.setAttribute("pessoaFisica", pessoaFisica);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/pessoafisica/editar.jsp");
+		request.setAttribute("tituloPagina", "Editar Pessoa Física");
+		
+		request.setAttribute("pathView", "/WEB-INF/views/pessoafisica/editar.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 		
 		rd.forward(request, response);
 	}

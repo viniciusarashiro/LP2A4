@@ -14,16 +14,7 @@ if(request.getAttribute("pessoasFisicas") != null)
 	pessoasFisicas = (Collection<PessoaFisica>) request.getAttribute("pessoasFisicas");
 
 %>   
- 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Pessoas Físicas Cadastradas</title>
-</head>
-<body>
-	<h1>Pessoas Físicas Cadastradas</h1>
-	
+
 	<nav>
 		<a href="${pageContext.request.contextPath}/pessoafisica/cadastrar">Cadastrar nova pessoa física</a>
 	</nav>
@@ -36,6 +27,7 @@ if(request.getAttribute("pessoasFisicas") != null)
 			<th>Data de Nascimento</th>
 			<th>Telefone</th>
 			<th>Situação</th>
+			<th></th>
 		</thead>
 		<tbody>
 			<%
@@ -56,11 +48,18 @@ if(request.getAttribute("pessoasFisicas") != null)
 							(pf.getSituacao() == 1 ? "Ativo" : "Inativo")
 							+ "</td>");
 					
+					out.write("<td>");
+					
+					out.write("<a href=\"" + request.getContextPath() + "/pessoafisica/editar?id=" + pf.getId() + "\">Editar </a>");
+					
+					out.write("<a href=\"" + request.getContextPath() + "/pessoafisica/excluir?id=" + pf.getId() + "\">Excluir</a>");
+					
+					out.write("</td>");
+					
 					out.write("</tr>");
+					
 				}
 				
 			%>
 		</tbody>
 	</table>
-</body>
-</html>

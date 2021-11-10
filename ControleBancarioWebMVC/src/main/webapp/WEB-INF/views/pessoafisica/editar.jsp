@@ -8,21 +8,7 @@
 
 PessoaFisica pessoaFisica = (PessoaFisica) request.getAttribute("pessoaFisica");
 
-
-
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Editar Pessoa Física</title>
-</head>
-<body>
-	<h1>Editar Pessoa Física</h1>
-	
-	<nav>
-		<a href="${pageContext.request.contextPath}/pessoafisica/listar">Voltar para a listagem de pessoas físicas</a>
-	</nav>
 	
 	<form method="POST" action="${pageContext.request.contextPath}/pessoafisica/editar">
 		<p>
@@ -98,5 +84,3 @@ PessoaFisica pessoaFisica = (PessoaFisica) request.getAttribute("pessoaFisica");
 			<input type="submit" value="Enviar">
 		</p>
 	</form>
-</body>
-</html>

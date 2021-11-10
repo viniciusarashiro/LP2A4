@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Cadastrar Nova Pessoa Física</title>
-</head>
-<body>
-	<h1>Cadastrar Nova Pessoa Física</h1>
-	
-	<nav>
-		<a href="${pageContext.request.contextPath}/pessoafisica/listar">Voltar para a listagem de pessoas físicas</a>
-	</nav>
-	
+
 	<form method="POST" action="${pageContext.request.contextPath}/pessoafisica/cadastrar">
 		<p>
 			<label for="numCpf">CPF:</label>
@@ -62,5 +50,3 @@
 			<input type="submit" value="Enviar">
 		</p>
 	</form>
-</body>
-</html>

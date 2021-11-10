@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.PessoaFisica;
+import modelo.repositorio.PersistenceConfig;
 import modelo.repositorio.PessoaFisicaRepositorio;
 
 
@@ -26,9 +27,15 @@ public class ListarPessoaFisicaServlet extends HttpServlet {
 		
 		Collection<PessoaFisica> pessoasFisicas = repositorio.recuperarPessoasFisicas();
 		
+		PersistenceConfig.closeEntityManager();
+		
 		request.setAttribute("pessoasFisicas", pessoasFisicas);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/pessoafisica/listar.jsp");
+		request.setAttribute("tituloPagina", "Pessoas Físicas Cadastradas");
+		
+		request.setAttribute("pathView", "/WEB-INF/views/pessoafisica/listar.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 		
 		rd.forward(request, response);
 	}

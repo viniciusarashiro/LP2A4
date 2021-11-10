@@ -19,9 +19,6 @@ import modelo.repositorio.PessoaFisicaRepositorio;
 public class ExcluirPessoaFisicaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
     public ExcluirPessoaFisicaServlet() {
        
     }
@@ -48,7 +45,11 @@ public class ExcluirPessoaFisicaServlet extends HttpServlet {
 		
 		request.setAttribute("pessoaFisica", pessoaFisica);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/pessoafisica/excluir.jsp");
+		request.setAttribute("tituloPagina", "Excluir Pessoa Física");
+		
+		request.setAttribute("pathView", "/WEB-INF/views/pessoafisica/excluir.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 		
 		rd.forward(request, response);
 	}
