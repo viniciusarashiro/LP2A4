@@ -44,4 +44,24 @@ public class PessoaFisicaRepositorio extends Repositorio<PessoaFisica>{
 		return resultado;
 		
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Collection<PessoaFisica> recuperarPessoasFisicasPorStatus(byte situacao) {
+		Collection<PessoaFisica> resultado = null;
+		
+		try {
+			resultado = PersistenceConfig.getEntityManager()
+					.createQuery(
+							"FROM " + PessoaFisica.class.getName() +
+							" WHERE situacao = :situacao") 
+					.setParameter("situacao", situacao)
+					.getResultList();
+		}
+		catch(Exception e) {
+			System.out.println("Erro ao tentar recuperar as pessoas fisicas cadastradas"
+					+ e.getMessage());
+		}
+		
+		return resultado;
+	}
 }

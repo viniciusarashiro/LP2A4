@@ -37,17 +37,20 @@ public class ContaComum implements Serializable
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	protected Collection<Movimento> movimentos;
 	
-	//protected Collection<Pessoa> titulares;
-	
-	public ContaComum(long numero, Date abertura) {
+	public ContaComum(long numero, Date abertura)
+	{
 		this.numero = numero;
-		this.abertura = abertura;
-		
+		this.abertura = abertura;		
 		this.saldo = 0.0;
 		this.situacao = 1;
-		
-		this.movimentos = new ArrayList<Movimento>();
-		//this.titulares = new ArrayList<Pessoa>();
+	}
+	
+	public ContaComum()
+	{
+		this.numero = ContaComum.obterNumeroContaAleatorio();
+		this.abertura = new Date();		
+		this.saldo = 0.0;
+		this.situacao = 1;
 	}
 	
 	public Date getFechamento() {
@@ -84,34 +87,15 @@ public class ContaComum implements Serializable
 	public Collection<Movimento> getMovimentos() {
 		return this.movimentos;
 	}
-
-	/* public Collection<Pessoa> getTitulares() {
-		return titulares;
-	}
-
-	public void setTitulares(ArrayList<Pessoa> titulares) {
-		this.titulares = titulares;
-	} */
 	
-	public static ContaComum abrirConta() {
-		
-		//Estratégia para gerar um número de conta (pseudo)aleatório.
+	public static long obterNumeroContaAleatorio()
+	{
+		// Gerar um número de conta (pseudo)aleatório.
 		Random r = new Random();
-		
-		long n = r.nextLong() + 1;
-		
-		if(n < 0) {
-			n = n *(-1);
-		}
-		
-		//Data de abertura da conta
-		Date abertura = new Date();
-		
-		//Criação da conta
-		ContaComum cc = new ContaComum(n , abertura);
-		
-		return cc;
-		
+		long n = r.nextLong();
+		if(n < Long.MAX_VALUE && n != -1) n++;
+		if(n < 0) n = n*(-1);
+		return n;
 	}
 	
 	

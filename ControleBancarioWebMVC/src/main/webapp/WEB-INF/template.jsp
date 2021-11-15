@@ -80,13 +80,19 @@ if(request.getAttribute("pathView") != null)
 		                Pessoas Físicas
 		              </a>
 		            </li>
-		            <!--  
 		            <li>
-		              <a href="#" class="nav-link text-white">
-		                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
-		                Orders
+		              <a href="${pageContext.request.contextPath}/pessoajuridica" class="nav-link text-white">
+		                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
+		                Pessoas Jurídicas
 		              </a>
 		            </li>
+		            <li>
+		              <a href="${pageContext.request.contextPath}/contacomum" class="nav-link text-white">
+		                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
+		                Contas Comums
+		              </a>
+		            </li>
+		            <!-- 
 		            <li>
 		              <a href="#" class="nav-link text-white">
 		                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>
