@@ -117,8 +117,8 @@ if(request.getAttribute("pathView") != null)
 		        </form>
 		
 		        <div class="text-end">
-		          <button type="button" class="btn btn-light text-dark me-2">Acesse sua conta</button>
-		          <button type="button" class="btn btn-primary">Abra sua conta</button>
+		          <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Acesse sua conta</a>
+		          <a href="${pageContext.request.contextPath}/pessoafisica/cadastrar" class="btn secondary">Abra sua conta</a>
 		        </div>
 		      </div>
 		    </div>

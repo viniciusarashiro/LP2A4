@@ -11,18 +11,18 @@ PessoaFisica pessoaFisica = (PessoaFisica) request.getAttribute("pessoaFisica");
 %>
 	
 	<form method="POST" action="${pageContext.request.contextPath}/pessoafisica/editar">
-		<p>
-			<label for="numCpf">CPF:</label>
-			<input type="num" name="numCpf" value="<%=pessoaFisica.getCpf()%>">
+		<div class="mb-3 row">
+			<label for="numCpf" class="form-label">CPF:</label>
+			<input type="num" name="numCpf" required class="form-control" value="<%=pessoaFisica.getCpf()%>">
 			<input type="hidden" name="numId" value="<%=pessoaFisica.getId()%>">
-		</p>
+		</div>
 		
-		<p>
-			<label for="txtNome">Nome:</label>
-			<input type="text" name="txtNome" value="<%=pessoaFisica.getNome()%>">
-		</p>
+		<div class="mb-3 row">
+			<label for="txtNome" class="form-label">Nome:</label>
+			<input type="text" name="txtNome" required class="form-control" value="<%=pessoaFisica.getNome()%>">
+		</div>
 		
-		<p>
+		<div class="mb-3 row">
 		<%
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -34,31 +34,33 @@ PessoaFisica pessoaFisica = (PessoaFisica) request.getAttribute("pessoaFisica");
 			
 		%>
 		
-			<label for="datNascto">Data de Nascimento:</label>
-			<input type="date" name="datNascto" value="<%=datNasctoValue%>">
-		</p>
+			<label for="datNascto" class="form-label">Data de Nascimento:</label>
+			<input type="date" name="datNascto" class="form-control" value="<%=datNasctoValue%>">
+		</div>
 		
-		<p>
-			<label for="txtEndereco">Endereço:</label>
-			<input type="text" name="txtEndereco" value="<%=pessoaFisica.getEndereco()%>">
-		</p>
+		<div class="mb-3 row">
+			<label for="txtEndereco" class="form-label">Endereço:</label>
+			<input type="text" name="txtEndereco" class="form-control" 
+			value="<%=(pessoaFisica.getEndereco() != null ? pessoaFisica.getEndereco() : "")%>">
+		</div>
 		
-		<p>
-			<label for="numCep">CEP:</label>
-			<input type="num" name="numCep" value="<%=pessoaFisica.getCep()%>">
-		</p>
+		<div class="mb-3 row">
+			<label for="numCep" class="form-label">CEP:</label>
+			<input type="num" name="numCep" class="form-control" value="<%=pessoaFisica.getCep()%>">
+		</div>
 		
-		<p>
-			<label for="txtTelefone">Telefone:</label>
-			<input type="text" name="txtTelefone" value="<%=pessoaFisica.getTelefone()%>">
-		</p>
+		<div class="mb-3 row">
+			<label for="txtTelefone" class="form-label">Telefone:</label>
+			<input type="text" name="txtTelefone" class="form-control" 
+			value="<%=(pessoaFisica.getTelefone() != null ? pessoaFisica.getTelefone() : "")%>">
+		</div>
 		
-		<p>
-			<label for="numRenda">Renda (R$):</label>
-			<input type="number" name="numRenda" step=".01" value="<%=pessoaFisica.getRenda()%>">
-		</p>
+		<div class="mb-3 row">
+			<label for="numRenda" class="form-label">Renda (R$):</label>
+			<input type="number" name="numRenda" class="form-control" step=".01" value="<%=pessoaFisica.getRenda()%>">
+		</div>
 		
-		<p>
+		<div class="mb-3 row">
 		
 		<%
 		
@@ -72,15 +74,25 @@ PessoaFisica pessoaFisica = (PessoaFisica) request.getAttribute("pessoaFisica");
 		%>
 		
 		
-			<label for="selSituacao">Situação:</label>
-				<select name="selSituacao">
+			<label for="selSituacao" class="form-label">Situação:</label>
+				<select name="selSituacao" class="select" required>
 					<option value="">- Selecione -</option>
 					<option value="0" <%=statusInativo%>>Inativo</option>
 					<option value="1" <%=statusAtivo%>>Ativo</option>
 				</select>
-		</p>
+		</div>
 		
-		<p>
-			<input type="submit" value="Enviar">
-		</p>
+		<div class="mb-3 row">
+			<label for="txtEmail" class="form-label">Email:</label>
+			<input type="email" name="txtEmail" required class="form-control" value="<%=pessoaFisica.getEmail()%>">
+		</div>
+		
+		<div class="mb-3 row">
+			<label for="pwdSenha" class="form-label">Senha:</label>
+			<input type="password" name="pwdSenha" required class="form-control" value="<%=pessoaFisica.getSenha()%>">
+		</div>
+		
+		<div class="mb-3 row">
+			<input type="submit" value="Enviar" class="form-control btn btn-primary">
+		</div>
 	</form>

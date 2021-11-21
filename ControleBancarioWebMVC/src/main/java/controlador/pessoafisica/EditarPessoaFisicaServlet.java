@@ -126,6 +126,16 @@ public class EditarPessoaFisicaServlet extends HttpServlet {
 				pf.setSituacao(Byte.parseByte(request.getParameter("selSituacao")));
 			}
 			
+			if(request.getParameter("txtEmail") != null && 
+					!request.getParameter("txtEmail").trim().equals(""))  {
+				pf.setEmail(request.getParameter("txtEmail").trim());
+			}
+			
+			if(request.getParameter("pwdSenha") != null && 
+					!request.getParameter("pwdSenha").trim().equals(""))  {
+				pf.setSenha(request.getParameter("pwdSenha").trim());
+			}
+			
 			
 			repositorio.atualizar(pf);
 			

@@ -18,7 +18,7 @@ public abstract class Pessoa implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int id;
 	
-	@Column(length = 255)
+	@Column(length = 255, nullable = false)
 	protected String nome;
 	
 	@Column(length = 255)
@@ -32,6 +32,12 @@ public abstract class Pessoa implements Serializable
 	protected float renda;
 	
 	protected byte situacao;
+	
+	@Column(nullable = false)
+	protected String email;
+	
+	@Column(nullable = false)
+	protected String senha;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	protected Collection<ContaComum> contas; 
@@ -96,6 +102,22 @@ public abstract class Pessoa implements Serializable
 
 	public void setSituacao(byte situacao) {
 		this.situacao = situacao;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public Collection<ContaComum> getContas() {

@@ -64,4 +64,26 @@ public class PessoaFisicaRepositorio extends Repositorio<PessoaFisica>{
 		
 		return resultado;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public PessoaFisica recuperarPessoaFisicaPorEmail(String email) {
+		PessoaFisica resultado = null;
+		
+		try {
+			resultado = (PessoaFisica) PersistenceConfig.getEntityManager()
+					.createQuery(
+							"FROM " + PessoaFisica.class.getName() +
+							" WHERE email = :email") 
+					.setParameter("email", email).getSingleResult();
+		}
+		catch(Exception e) {
+			System.out.println("Erro ao tentar recuperar as pessoas fisicas cadastradas"
+					+ e.getMessage());
+			resultado = null;
+		}
+		
+		return resultado;
+	}
+	
+	
 }

@@ -26,9 +26,37 @@ public class Main {
 		
 		pfDAO.fecharConexao(); */
 		
+		ContaComum c1 = ContaComum.abrirConta();
+		c1.setFechamento(new Date(2022 - 1900, 3, 25));
+		c1.setSaldo(4500.00);
+		c1.setSenha(123);
+	
+		PessoaFisica p1 = new PessoaFisica();
+		
+		
+		p1.setNome("Joao Silva");
+		p1.setEndereco("Rua Abc Def, 250, Sao Paulo - SP");
+		p1.setCep(77705333);
+		p1.setTelefone("(77) 7777-7777");
+		p1.setRenda(4800.5f);
+		p1.setCpf(11111111111l);
+		p1.setNascto(new Date(1990 - 1900, 3, 25));
+		
+		PessoaFisicaDAO pfDAO = new PessoaFisicaDAO();
+		
+		int idP1 = pfDAO.criarPessoaFisica(p1);
+		pfDAO.incluirConta(p1, c1);
+		//int id = pfDAO.removerPessoa(3);
+		//System.out.println("Removendo pessoa de id: " + id);
+		pfDAO.fecharConexao();
+		
+		
+		
+		
+		
 		/* Criar conta comum */
 		
-		/* ContaComum c1 = ContaComum.abrirConta();
+	/*	ContaComum c1 = ContaComum.abrirConta();
 		c1.setFechamento(new Date(2022 - 1900, 3, 25));
 		c1.setSaldo(4500.00);
 		c1.setSenha(123);
@@ -54,6 +82,8 @@ public class Main {
 		
 		//long numeroConta = c1DAO.editarContaComum(4830522277178873107l, (byte) 2, 456);
 		//System.out.println("Conta editada!");
+		
+		
 		
 		//c1DAO.fecharConexao();
 		

@@ -8,6 +8,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import modelo.PessoaFisica;
 
 
 @WebServlet({ "/index", "/home" })
@@ -20,7 +22,18 @@ public class IndexServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("tituloPagina", "Sistema de Controle Bancário Web - Página inicial");
+		HttpSession session = request.getSession();
+		
+
+		if(session.getAttribute("usuarioAutenticado") != null &&
+				"OK".equals(session.getAttribute("usuarioAutenticado"))) {
+			PessoaFisica p = (PessoaFisica) session.getAttribute("usuario");
+			request.setAttribute("tituloPagina", "Sistema de Controle Bancario Web - Pagina "
+					+ "Inicial<br>" + "Bem-vindo " + p.getNome() + "!");
+		} else {
+			request.setAttribute("tituloPagina", "Sistema de Controle Bancário Web - Página inicial");
+		}	
+		
 		
 		request.setAttribute("pathView", "/WEB-INF/index.jsp");
 		

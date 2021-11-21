@@ -8,6 +8,8 @@ import javax.persistence.*;
 public class PessoaJuridica extends Pessoa
 {
 	private static final long serialVersionUID = 1l;
+	
+	@Column(nullable = false)
 	private long cnpj;
 	
 	@Column(length = 255, name = "nome_fantasia")

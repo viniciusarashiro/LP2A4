@@ -10,8 +10,11 @@ public class PessoaFisica extends Pessoa
 {
 	private static final long serialVersionUID = 1l;
 	
+
+	@Column(nullable = false)
 	private long cpf;
 	
+	@Column(name = "data_nascto")
 	@Temporal(TemporalType.DATE)
 	private Date nascto;
 	
@@ -24,7 +27,7 @@ public class PessoaFisica extends Pessoa
 	}
 	
 	public Date getNascto() {
-		return this.nascto;
+		return nascto;
 	}
 	
 	public void setNascto(Date nascto) {
